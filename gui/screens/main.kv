@@ -1,0 +1,144 @@
+<SpinnerPopup>:
+    size_hint: None, None
+    size: dp(92), dp(92)
+    auto_dismiss: False
+    BoxLayout:
+        orientation: 'vertical'
+        AnchorLayout:
+            MDSpinner:
+                size_hint: None, None
+                size: dp(46), dp(46)
+
+<TrendingCard>:
+    radius: 24
+    box_radius: [0, 0, 24, 24]
+    box_color: 1, 1, 1, 0
+    source: root.moviePoster
+    size_hint: None, None
+    size: "160dp", "220dp"
+    MDIconButton:
+        icon:"arrow-right-circle"
+        theme_icon_color:"Custom"
+        icon_color:0,1,0,1
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        on_release:
+            app.show_movie_details(root.movieTitle,root.movieLink,root.moviePoster)
+
+<MovieCard>:
+    radius: 24
+    box_radius: [0, 0, 24, 24]
+    box_color: 1, 1, 1, 0
+    source: root.moviePoster
+    size_hint: None, None
+    size: "130dp", "170dp"
+    MDIconButton:
+        icon:"arrow-right-circle"
+        theme_icon_color:"Custom"
+        icon_color:0,1,0,1
+        pos_hint: {'center_x': 0.5}
+        on_release:
+            app.show_movie_details(root.movieTitle,root.movieLink,root.moviePoster)
+
+<MoviesCarousel>:
+    orientation: 'vertical'
+    adaptive_height:True
+    spacing:10
+    MDLabel:
+        text:"Trending"
+        font_name: 'BPoppins'
+        font_size: "10sp"
+        pos_hint: {"center_x":.15}
+        halign:"center"
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDScrollView:
+            do_scroll_y:False
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing:10
+                id : trending_corousel
+                adaptive_width:True
+MDScreen:
+    name:'main'
+    MDScrollView:
+        # FOR DISABLE y AXIS SCROLL
+        do_scroll_x:True
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing:15
+            padding:20
+            adaptive_height:True
+            MDLabel:
+                text:"theHub"
+                font_name: 'BPoppins'
+                font_size: "28sp"
+                pos_hint: {"center_x":.5}
+                halign:"center"
+            MDLabel:
+                text: "Trending"
+                font_name: 'BPoppins'
+                font_size: "10sp"
+            MDScrollView:
+                size_hint: 1, None
+                size: self.parent.width, dp(220)
+                do_scroll_x: True
+                do_scroll_y: False
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    spacing:20
+                    adaptive_height:True
+                    adaptive_width:True
+                    #adaptive_width:True
+                    size_hint: None,None
+                    id : trending_corousel
+            MDLabel:
+                text: "Popular"  
+                font_name: 'BPoppins'
+                font_size: "10sp"      
+            MDScrollView:
+                size_hint: 1, None
+                size: self.parent.width, dp(220)
+                do_scroll_x: True
+                do_scroll_y: False
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    spacing:20
+                    adaptive_height:True
+                    adaptive_width:True
+                    #adaptive_width:True
+                    size_hint: None,None
+                    id : popular_corousel
+            MDLabel:
+                text: "Animations"
+                font_name: 'BPoppins'
+                font_size: "10sp"
+            MDScrollView:
+                size_hint: 1, None
+                size: self.parent.width, dp(220)
+                do_scroll_x: True
+                do_scroll_y: False
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    spacing:20
+                    adaptive_height:True
+                    adaptive_width:True
+                    #adaptive_width:True
+                    size_hint: None,None
+                    id : animations_corousel
+            MDLabel:
+                text: "Action"
+                font_name: 'BPoppins'
+                font_size: "10sp"
+            MDScrollView:
+                size_hint: 1, None
+                size: self.parent.width, dp(220)
+                do_scroll_x: True
+                do_scroll_y: False
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    spacing:20
+                    adaptive_height:True
+                    adaptive_width:True
+                    #adaptive_width:True
+                    size_hint: None,None
+                    id : action_corousel

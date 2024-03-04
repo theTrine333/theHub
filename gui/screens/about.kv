@@ -1,0 +1,58 @@
+MDScreen:
+    name:"about"
+    MDFloatLayout:
+        MDScrollView:
+            # FOR DISABLE y AXIS SCROLL
+            do_scroll_x:False
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height: True
+                spacing:30
+                FitImage:
+                    id: bg_image
+                    source: app.MoviePoster
+                    size_hint: None, None
+                    pos_hint: {'center_x': .5}
+                    size: "270dp", "360dp"
+                    radius: 36, 36, 36, 36
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    pos_hint: {'center_x': .65}
+                    adaptive_height: True
+                    spacing:60
+                    MDRoundFlatIconButton:
+                        icon: "arrow-left"
+                        text: "BACK"
+                        on_release:
+                            root.manager.transition.direction = "left"
+                            root.manager.current = "main"
+                    MDRoundFlatIconButton:
+                        icon: "arrow-right"
+                        text: "NEXT"
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    pos_hint: {'center_x': .6}
+                    adaptive_height:True
+                    spacing:5
+                    MDLabel:
+                        text: "TITLE : "
+                        font_name: 'MPoppins'
+                        font_size: "18sp"
+                    MDLabel:
+                        text: app.movieTitle
+                        font_name: 'MPoppins'
+                        font_size: "12sp"
+                        font_color: 1,1,1,.5
+                        size_hint:None,None
+                        width:"320dp"
+                    MDLabel:
+                        text: "INFO : "
+                        font_name: 'MPoppins'
+                        font_size: "18sp"
+                    MDLabel:
+                        text: app.Info
+                        font_name: 'MPoppins'
+                        font_size: "12sp"
+                        font_color: 1,1,1,.5
+                        size_hint:None,None
+                        width:"320dp"

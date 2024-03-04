@@ -1,0 +1,55 @@
+<SpinnerPopup>:
+    size_hint: None, None
+    size: dp(92), dp(92)
+    auto_dismiss: False
+    BoxLayout:
+        orientation: 'vertical'
+        AnchorLayout:
+            MDSpinner:
+                size_hint: None, None
+                size: dp(46), dp(46)
+
+<TrendingCard>:
+    radius: 24
+    box_radius: [0, 0, 24, 24]
+    box_color: 1, 1, 1, 0
+    source: root.moviePoster
+    size_hint: None, None
+    size: "160dp", "220dp"
+    MDIconButton:
+        icon:"arrow-right-circle"
+        theme_icon_color:"Custom"
+        icon_color:0,1,0,1
+        pos_hint: {'center_x': 0.5}
+        on_release:
+            print(root.moviePoster)
+            app.show_movie_details(root.movieTitle,root.movieLink,root.moviePoster)
+MDScreen:
+    name:"Home"
+    MDFloatLayout:
+        md_background_color:'#2D6AB1'
+        MDLabel:
+            text:"theHub"
+            font_name: 'BPoppins'
+            font_size: "28sp"
+            pos_hint: {"center_x":.5,'center_y':.98}
+            halign:"center"
+        MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_y': .6}
+        MDBoxLayout:
+            pos_hint: {'y': .5}
+            orientation: 'vertical'
+            #adaptive_height: True
+            MDLabel:
+                text:"Trending"
+                font_name: 'BPoppins'
+                font_size: "10sp"
+                halign:"center"
+            MDScrollView:
+                do_scroll_x:True
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    spacing:10
+                    #id : trending_corousel
+                    adaptive_width:True
