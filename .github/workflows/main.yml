@@ -19,7 +19,7 @@ jobs:
 
       - name: Installing system requirements
         run: |
-          pip install playwrite[full]
+          pip install playwright[full]
           playwright install
           export PATH=$PATH:~/.local/bin/
         shell: bash
