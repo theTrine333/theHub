@@ -1,0 +1,46 @@
+name: Connect to SQLite3 Database
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Runs every 5 minutes
+
+jobs:
+  connect_to_database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x' # Choose the appropriate Python version
+
+      - name: Install SQLite3
+        run: sudo apt-get install -y sqlite3
+
+      - name: Connect to SQLite3 Database
+        run: |
+          python3 - <<EOF
+          import sqlite3
+
+          # Connect to the database
+          conn = sqlite3.connect('theHub.db')
+
+          # Create a cursor object to execute SQL queries
+          cursor = conn.cursor()
+
+          # Example: Execute a query to fetch all rows from a table named 'example_table'
+          cursor.execute("SELECT * FROM example_table")
+
+          # Fetch all the results
+          rows = cursor.fetchall()
+
+          # Print the results
+          for row in rows:
+              print(row)
+
+          # Close the cursor and the connection
+          cursor.close()
+          conn.close()
+          EOF
