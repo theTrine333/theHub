@@ -37,4 +37,4 @@ jobs:
           git config --local user.email "trinekaka@gmail.com"
           git config --local user.name "GitHub Action"
           git create theHub.db
-          git commit -m "Create theHub.db [skip ci]"
+          git commit -m "Update theHub.db [skip ci]"
