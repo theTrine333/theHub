@@ -22,12 +22,12 @@ jobs:
           pip install playwright[full]
           export PATH=$PATH:~/.local/bin/
     
-      - name: Connect to SQLite3 Database
-        run: |
-          python3 - <<EOF
-          import sqlite3
+      - name: Run Python script
+        run: python update_database.py
 
-          # Connect to the database
-          conn = sqlite3.connect('theHub.db')
-          conn.close()
-          print("Connection Succedded")
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add theHub.db
+          git commit -m "Update theHub.db [skip ci]"
