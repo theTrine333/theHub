@@ -2,7 +2,7 @@ name: Connect to SQLite3 Database
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Runs every 5 minutes
+    - cron: '*/1 * * * *'  # Runs every 5 minutes
 
 jobs:
   connect_to_database:
