@@ -1,46 +1,32 @@
-name: Connect to SQLite3 Database
-
+name: CI
 on:
-  schedule:
-    - cron: '*/1 * * * *'  # Runs every 5 minutes
+  push:
+    branches: [ main ]
 
 jobs:
-  connect_to_database:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-20.04
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x' # Choose the appropriate Python version
-
-      - name: Install SQLite3
-        run: sudo apt-get install -y sqlite3
-
-      - name: Connect to SQLite3 Database
+      # used to cache dependencies with a timeout
+      - name: Get Date
+        id: get-date
         run: |
-          python3 - <<EOF
-          import sqlite3
+          echo "::set-output name=date::$(/bin/date -u "+%Y%m%d")"
+        shell: bash
 
-          # Connect to the database
-          conn = sqlite3.connect('theHub.db')
+      - name: Installing system requirements
+        run: |
+          pip install playwrite[full]
+          playwright install
+          export PATH=$PATH:~/.local/bin/
+        shell: bash
+     
 
-          # Create a cursor object to execute SQL queries
-          cursor = conn.cursor()
-
-          # Example: Execute a query to fetch all rows from a table named 'example_table'
-          cursor.execute("SELECT * FROM example_table")
-
-          # Fetch all the results
-          rows = cursor.fetchall()
-
-          # Print the results
-          for row in rows:
-              print(row)
-
-          # Close the cursor and the connection
-          cursor.close()
-          conn.close()
-          EOF
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: package
+          path: ${{ steps.buildozer.outputs.filename }}
