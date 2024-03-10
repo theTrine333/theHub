@@ -26,14 +26,7 @@ jobs:
       - name: Check if theHub.db exists
         run: |
           if [ ! -f "theHub.db" ]; then
-            sqlite3 theHub.db <<EOF
-            -- Create your database schema here if needed
-            -- Example:
-            -- CREATE TABLE example_table (
-            --   id INTEGER PRIMARY KEY,
-            --   column_name TEXT
-            -- );
-            EOF
+            touch theHub.db
           fi
 
       - name: Run Python script
