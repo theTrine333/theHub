@@ -21,7 +21,21 @@ jobs:
         run: |
           pip install playwright[full]
           export PATH=$PATH:~/.local/bin/
-    
+
+
+      - name: Check if theHub.db exists
+        run: |
+          if [ ! -f "theHub.db" ]; then
+            sqlite3 theHub.db <<EOF
+            -- Create your database schema here if needed
+            -- Example:
+            -- CREATE TABLE example_table (
+            --   id INTEGER PRIMARY KEY,
+            --   column_name TEXT
+            -- );
+            EOF
+          fi
+
       - name: Run Python script
         run: python update-database.py
 
