@@ -21,4 +21,30 @@ jobs:
         run: |
           pip install playwright[full]
           export PATH=$PATH:~/.local/bin/
+    
+      - name: Connect to SQLite3 Database
+        run: |
+          python3 - <<EOF
+          import sqlite3
+
+          # Connect to the database
+          conn = sqlite3.connect('theHub.db')
+
+          # Create a cursor object to execute SQL queries
+          cursor = conn.cursor()
+
+          # Example: Execute a query to fetch all rows from a table named 'example_table'
+          cursor.execute("SELECT * FROM example_table")
+
+          # Fetch all the results
+          rows = cursor.fetchall()
+
+          # Print the results
+          for row in rows:
+              print(row)
+
+          # Close the cursor and the connection
+          cursor.close()
+          conn.close()
+          EOF
         shell: bash
