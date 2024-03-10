@@ -23,7 +23,7 @@ jobs:
           export PATH=$PATH:~/.local/bin/
     
       - name: Run Python script
-        run: python update_database.py
+        run: python update-database.py
 
       - name: Commit changes
         run: |
