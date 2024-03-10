@@ -30,4 +30,4 @@ jobs:
           # Connect to the database
           conn = sqlite3.connect('theHub.db')
           conn.close()
-          shell: bash
+          print("Connection Succedded")
